@@ -335,4 +335,4 @@ MIT License - Free to use in commercial and non-commercial projects.
 ## Credits
 
 - **Rpx** - Original concept and development
-- **Just Dev** - Testing and feedback
+- **Just Dev** - Testing and bugfix
