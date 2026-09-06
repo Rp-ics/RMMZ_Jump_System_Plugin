@@ -134,6 +134,8 @@ These commands appear in the **Plugin Command** menu when creating events.
 | Set Jump Distance | Distance | Change jump distance at runtime |
 | Set Jump Duration | Duration | Change jump speed at runtime |
 | Set Jump Cooldown | Cooldown | Change cooldown between jumps |
+| Enable Double Jump | — | Enable double jump |
+| Disable Double Jump | — | Disable double jump |
 | Set Jump Key | Key | Change jump key at runtime |
 | Set Fall Damage | Enabled | Enable/disable fall damage |
 
@@ -162,9 +164,11 @@ These commands appear in the **Plugin Command** menu when creating events.
 ### Basic Control
 
 ```javascript
-JDKJump.enable()        // Enable jumping
-JDKJump.disable()       // Disable jumping
-JDKJump.isJumping()     // Returns true if currently jumping
+JDKJump.enable()            // Enable jumping
+JDKJump.disable()           // Disable jumping
+JDKJump.isJumping()         // Returns true if currently jumping
+JDKJump.enableDoubleJump()  // Enable double jump
+JDKJump.disableDoubleJump() // Disable double jump
 ```
 
 ### Force Jump
