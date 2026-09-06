@@ -153,8 +153,10 @@ These commands appear in the **Plugin Command** menu when creating events.
 
 | Command | Parameters | Description |
 |---------|------------|-------------|
-| Enable Fly | — | Enable flying |
-| Disable Fly | — | Disable flying |
+| Allow Fly | — | Allow player to use fly key |
+| Disallow Fly | — | Disallow fly key (stops flying too) |
+| Enable Fly | — | Start flying now |
+| Disable Fly | — | Stop flying now |
 | Toggle Fly | — | Toggle fly mode |
 | Set Fly Height | Height | Change fly height |
 | Set Fly Speed | Speed | Change fly speed |
@@ -210,10 +212,13 @@ JDKJump.get('isEnabled')       // true/false
 ### Fly Control
 
 ```javascript
-JDKJump.fly.enable()           // Start flying
-JDKJump.fly.disable()          // Stop flying
-JDKJump.fly.toggle()           // Toggle fly mode
-JDKJump.fly.isFlying()         // true/false
+JDKJump.fly.allow()             // Allow player to use fly key
+JDKJump.fly.disallow()          // Disallow fly key (stops flying too)
+JDKJump.fly.enable()            // Start flying
+JDKJump.fly.disable()           // Stop flying
+JDKJump.fly.toggle()            // Toggle fly mode
+JDKJump.fly.isFlying()          // true/false
+JDKJump.fly.isAllowed()         // true/false (can player use fly?)
 
 JDKJump.set('flyHeight', 100)  // Change fly height
 JDKJump.set('flySpeed', 2.0)           // Change fly speed
