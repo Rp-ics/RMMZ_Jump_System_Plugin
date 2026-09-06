@@ -40,7 +40,7 @@ A complete jump and fly system for RPG Maker MZ. Jump over obstacles, fly with c
 | Jump Duration | 30 | Frames to complete jump (higher = slower) |
 | Animation Speed | 8 | Walk animation cycle during jump |
 | Jump Cooldown | 10 | Frames between jumps |
-| Jump Key | ok | Any valid RPG Maker MZ input key |
+| Jump Key | ok | Any key from valid keys list below |
 
 ### Double Jump
 
@@ -76,7 +76,7 @@ A complete jump and fly system for RPG Maker MZ. Jump over obstacles, fly with c
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | Fly Enabled | true | Enable fly mode feature |
-| Fly Key | shift | Key to toggle fly mode |
+| Fly Key | shift | Any key from valid keys list below |
 | Fly Height | 80 | Height above ground while flying |
 | Fly Speed | 1.5 | Movement speed multiplier (1.0 = normal) |
 | Fly Blocked Regions | (none) | Regions where flying is blocked |
@@ -84,6 +84,9 @@ A complete jump and fly system for RPG Maker MZ. Jump over obstacles, fly with c
 | Fly Sprite | (none) | Custom sprite while flying (empty = original) |
 | Fly Animation Speed | 6 | Animation speed while flying |
 | Fly Switch | 0 | Switch to enable/disable fly (0 = use key) |
+
+**Valid Keys for Jump Key and Fly Key:**
+`ok`, `shift`, `control`, `alt`, `space`, `enter`, `tab`, `escape`, `backspace`, `delete`, `insert`, `home`, `end`, `pageup`, `pagedown`, `up`, `down`, `left`, `right`, `a`-`z`, `0`-`9`, `f1`-`f12`, `num0`-`num9`
 
 ### Audio
 
