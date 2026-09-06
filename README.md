@@ -83,6 +83,9 @@ A complete jump and fly system for RPG Maker MZ. Jump over obstacles, fly with c
 | Fly Blocked Terrains | (none) | Terrain tags where flying is blocked |
 | Fly Sprite | (none) | Custom sprite while flying (empty = original) |
 | Fly Animation Speed | 6 | Animation speed while flying |
+| Fly Bob Speed | 0.08 | Speed of up/down bobbing (lower = slower) |
+| Fly Bob Amount | 8 | Amount of bobbing in pixels |
+| Fly Height Variation | 0 | Additional height variation (0 = constant height) |
 | Fly Switch | 0 | Switch to enable/disable fly (0 = use key) |
 
 **Valid Keys for Jump Key and Fly Key:**
@@ -156,6 +159,9 @@ These commands appear in the **Plugin Command** menu when creating events.
 | Set Fly Height | Height | Change fly height |
 | Set Fly Speed | Speed | Change fly speed |
 | Set Fly Sprite | Sprite | Change fly sprite (filename) |
+| Set Fly Bob Speed | Speed | Change bobbing speed |
+| Set Fly Bob Amount | Amount | Change bobbing amount in pixels |
+| Set Fly Height Variation | Variation | Change height variation |
 
 ---
 
@@ -210,7 +216,10 @@ JDKJump.fly.toggle()           // Toggle fly mode
 JDKJump.fly.isFlying()         // true/false
 
 JDKJump.set('flyHeight', 100)  // Change fly height
-JDKJump.set('flySpeed', 2.0)   // Change fly speed
+JDKJump.set('flySpeed', 2.0)           // Change fly speed
+JDKJump.set('flyBobSpeed', 0.1)        // Change bobbing speed
+JDKJump.set('flyBobAmount', 12)        // Change bobbing amount
+JDKJump.set('flyHeightVariation', 10)  // Change height variation
 JDKJump.set('flySprite', 'Actor1')  // Change fly sprite
 ```
 
