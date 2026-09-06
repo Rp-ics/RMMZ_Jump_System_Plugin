@@ -37,7 +37,7 @@ A complete jump system for RPG Maker MZ. Jump over obstacles with no collision d
 | Jump Duration | 30 | Frames to complete jump (higher = slower) |
 | Animation Speed | 8 | Walk animation cycle during jump |
 | Jump Cooldown | 10 | Frames between jumps |
-| Jump Key | ok | Key to jump (ok, shift, control, alt) |
+| Jump Key | ok | Any valid RPG Maker MZ input key |
 
 ### Double Jump
 
@@ -148,6 +148,16 @@ Changes the cooldown between jumps.
 |-----------|---------|-------------|
 | Cooldown | 10 | New cooldown in frames |
 
+### Set Jump Key
+
+Changes the key used to jump at runtime.
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| Key Name | ok | Any valid RPG Maker MZ input key |
+
+**Valid Keys:** `ok`, `cancel`, `shift`, `control`, `alt`, `menu`, `up`, `down`, `left`, `right`, `ok`, or any keyboard key like `space`, `enter`, `tab`, etc.
+
 ### Set Fall Damage
 
 Enables or disables fall damage at runtime.
@@ -185,6 +195,7 @@ JDKJump.set('height', 200)     // Change jump height
 JDKJump.set('distance', 2)     // Change jump distance
 JDKJump.set('duration', 40)    // Change jump duration
 JDKJump.set('cooldown', 5)     // Change cooldown
+JDKJump.set('key', 'shift')    // Change jump key
 ```
 
 ### Read Parameters
