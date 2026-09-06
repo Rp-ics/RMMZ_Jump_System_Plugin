@@ -1,16 +1,19 @@
 # RMMZ Jump System Plugin
 
-A complete jump system for RPG Maker MZ. Jump over obstacles with no collision during jump, cloud FX, fall damage, and full event control for puzzle building.
+A complete jump and fly system for RPG Maker MZ. Jump over obstacles, fly with custom sprites, region/terrain damage, and full event control for puzzle building.
 
 ## Features
 
 - **Jump over water, walls, traps** — no collision during jump
 - **4-directional movement** — Up, Down, Left, Right
 - **Double Jump** — configurable second jump in mid-air
-- **Cloud FX** — visual effects on jump and landing
+- **Fly Mode** — toggle flying with custom sprite
+- **Region Damage** — lose HP when jumping into specific regions
+- **Terrain Damage** — lose HP when jumping into specific terrain tags
+- **Cloud FX** — visual effects on jump, landing, and flying
 - **Fall Damage** — optional damage system with invincibility frames
 - **Landing Animation** — squish effect on impact
-- **Event Commands** — 9 plugin commands for puzzle building
+- **Event Commands** — 18 plugin commands for puzzle building
 - **QMovement Compatible** — works with other movement plugins
 
 ---
@@ -55,12 +58,40 @@ A complete jump system for RPG Maker MZ. Jump over obstacles with no collision d
 | Damage Per Tile | 3 | Additional damage per tile of height |
 | Invincibility Frames | 60 | Frames of invincibility after damage |
 
+### Region / Terrain Damage
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| Region Damage Enabled | false | Enable damage when jumping into regions |
+| Region Damage Type | full | `full` = all HP, `custom` = specific amount |
+| Region Damage Amount | 50 | Damage when type is custom |
+| Region Damage IDs | (none) | Region IDs that cause damage (comma separated) |
+| Terrain Damage Enabled | false | Enable damage when jumping into terrain tags |
+| Terrain Damage Type | full | `full` = all HP, `custom` = specific amount |
+| Terrain Damage Amount | 50 | Damage when type is custom |
+| Terrain Damage IDs | (none) | Terrain tag IDs that cause damage (comma separated) |
+
+### Fly Mode
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| Fly Enabled | true | Enable fly mode feature |
+| Fly Key | shift | Key to toggle fly mode |
+| Fly Height | 80 | Height above ground while flying |
+| Fly Speed | 1.5 | Movement speed multiplier (1.0 = normal) |
+| Fly Blocked Regions | (none) | Regions where flying is blocked |
+| Fly Blocked Terrains | (none) | Terrain tags where flying is blocked |
+| Fly Sprite | (none) | Custom sprite while flying (empty = original) |
+| Fly Animation Speed | 6 | Animation speed while flying |
+| Fly Switch | 0 | Switch to enable/disable fly (0 = use key) |
+
 ### Audio
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
 | Jump Sound | Jump1 | Sound effect when jumping |
 | Land Sound | (none) | Sound effect when landing |
+| Fly Sound | (none) | Sound effect when toggling fly |
 
 ### Visuals
 
@@ -72,6 +103,8 @@ A complete jump system for RPG Maker MZ. Jump over obstacles with no collision d
 | Enable Land FX | true | Show cloud effect when landing |
 | Land FX Color | 200,200,200 | Color of land cloud (R,G,B) |
 | Land FX Duration | 15 | Duration of land effect in frames |
+| Fly FX Enabled | true | Show particle effect while flying |
+| Fly FX Color | 150,200,255 | Color of fly particles (R,G,B) |
 
 ### Restrictions
 
@@ -86,91 +119,42 @@ A complete jump system for RPG Maker MZ. Jump over obstacles with no collision d
 
 These commands appear in the **Plugin Command** menu when creating events.
 
-### Enable Jump
+### Jump Commands
 
-Enables jumping for the player.
+| Command | Parameters | Description |
+|---------|------------|-------------|
+| Enable Jump | — | Enable jumping |
+| Disable Jump | — | Disable jumping |
+| Force Jump | Height | Force a jump with custom height |
+| Jump To | X, Y, Height | Jump to specific tile position |
+| Set Jump Height | Height | Change jump height at runtime |
+| Set Jump Distance | Distance | Change jump distance at runtime |
+| Set Jump Duration | Duration | Change jump speed at runtime |
+| Set Jump Cooldown | Cooldown | Change cooldown between jumps |
+| Set Jump Key | Key | Change jump key at runtime |
+| Set Fall Damage | Enabled | Enable/disable fall damage |
 
-- **No parameters**
+### Region / Terrain Damage Commands
 
-### Disable Jump
+| Command | Parameters | Description |
+|---------|------------|-------------|
+| Set Region Damage | Enabled, Type, Amount, IDs | Configure region damage |
+| Set Terrain Damage | Enabled, Type, Amount, IDs | Configure terrain damage |
 
-Disables jumping for the player.
+### Fly Commands
 
-- **No parameters**
-
-### Force Jump
-
-Forces a jump with custom height.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Jump Height | 120 | Height of the jump in pixels |
-
-### Jump To Position
-
-Jumps to a specific tile position.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Target X | 0 | Tile X coordinate to jump to |
-| Target Y | 0 | Tile Y coordinate to jump to |
-| Jump Height | 120 | Height of the jump in pixels |
-
-### Set Jump Height
-
-Changes the jump height at runtime.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Jump Height | 120 | New height in pixels |
-
-### Set Jump Distance
-
-Changes the jump distance at runtime.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Jump Distance | 1.0 | New distance in tiles (1.0 = one tile) |
-
-### Set Jump Duration
-
-Changes the jump speed at runtime.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Duration | 30 | New duration in frames (higher = slower) |
-
-### Set Jump Cooldown
-
-Changes the cooldown between jumps.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Cooldown | 10 | New cooldown in frames |
-
-### Set Jump Key
-
-Changes the key used to jump at runtime.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Key Name | ok | Any valid RPG Maker MZ input key |
-
-**Valid Keys:** `ok`, `cancel`, `shift`, `control`, `alt`, `menu`, `up`, `down`, `left`, `right`, `ok`, or any keyboard key like `space`, `enter`, `tab`, etc.
-
-### Set Fall Damage
-
-Enables or disables fall damage at runtime.
-
-| Parameter | Default | Description |
-|-----------|---------|-------------|
-| Enabled | false | Enable fall damage? |
+| Command | Parameters | Description |
+|---------|------------|-------------|
+| Enable Fly | — | Enable flying |
+| Disable Fly | — | Disable flying |
+| Toggle Fly | — | Toggle fly mode |
+| Set Fly Height | Height | Change fly height |
+| Set Fly Speed | Speed | Change fly speed |
+| Set Fly Sprite | Sprite | Change fly sprite (filename) |
 
 ---
 
 ## Script Calls (Advanced)
-
-For advanced users, you can call these from **Script** commands in events.
 
 ### Basic Control
 
@@ -205,8 +189,97 @@ JDKJump.get('height')          // Get current jump height
 JDKJump.get('distance')        // Get current jump distance
 JDKJump.get('duration')        // Get current jump duration
 JDKJump.get('cooldown')        // Get current cooldown
+JDKJump.get('key')             // Get current jump key
 JDKJump.get('isJumping')       // true/false
 JDKJump.get('isEnabled')       // true/false
+```
+
+### Fly Control
+
+```javascript
+JDKJump.fly.enable()           // Start flying
+JDKJump.fly.disable()          // Stop flying
+JDKJump.fly.toggle()           // Toggle fly mode
+JDKJump.fly.isFlying()         // true/false
+
+JDKJump.set('flyHeight', 100)  // Change fly height
+JDKJump.set('flySpeed', 2.0)   // Change fly speed
+JDKJump.set('flySprite', 'Actor1')  // Change fly sprite
+```
+
+---
+
+## Region / Terrain Damage
+
+### How It Works
+
+When the player lands on a region or terrain tag that causes damage, they lose HP based on the configured type:
+
+- **full**: Loses all HP (instant death, minimum 1 HP)
+- **custom**: Loses a specific amount of HP
+
+### Example: Lava Regions
+
+1. Paint region `5` on lava tiles
+2. Set parameters:
+   - Region Damage Enabled: `true`
+   - Region Damage Type: `full`
+   - Region Damage IDs: `5`
+3. When player jumps onto lava, they lose all HP
+
+### Example: Poison Terrain
+
+1. Use terrain tag `3` on poison swamps
+2. Set parameters:
+   - Terrain Damage Enabled: `true`
+   - Terrain Damage Type: `custom`
+   - Terrain Damage Amount: `20`
+   - Terrain Damage IDs: `3`
+3. When player jumps onto poison, they lose 20 HP
+
+### Runtime Configuration
+
+```
+◆Plugin Command: [JDK Jump System] Set Region Damage
+  Enabled: true
+  Type: custom
+  Amount: 30
+  IDs: 5,6,7
+```
+
+---
+
+## Fly Mode
+
+### How It Works
+
+- Press the fly key (default: Shift) to toggle flying
+- While flying, player floats above ground
+- Movement speed increases by fly speed multiplier
+- Custom sprite can be used while flying
+- Flying is blocked by configured regions/terrain tags
+
+### Custom Fly Sprite
+
+1. Create a sprite sheet in `img/characters/`
+2. Set **Fly Sprite** parameter to the filename (without `.png`)
+3. When fly mode starts, player sprite changes automatically
+4. When fly mode ends, original sprite is restored
+
+### Example: Flying Over Water
+
+1. Set Fly Blocked Regions to `10` (water region)
+2. Player cannot fly over water tiles
+3. Must land and walk around
+
+### Runtime Configuration
+
+```
+◆Plugin Command: [JDK Jump System] Set Fly Height
+  Height: 100
+
+◆Plugin Command: [JDK Jump System] Set Fly Sprite
+  Sprite: Hero_Fly
 ```
 
 ---
@@ -243,21 +316,33 @@ Force the player to jump to a specific location:
 ◆... (continue event)
 ```
 
-### Blocked Regions
+### Lava Puzzle
 
-Use regions to prevent jumping in certain areas:
+Create a puzzle where player must avoid lava:
 
-1. Open the **Region** tab in the map editor
-2. Paint regions where jumping should be blocked
-3. In Plugin Parameters, set **Blocked Regions** to the region IDs (e.g., `1,2,3`)
+```
+◆Plugin Command: [JDK Jump System] Set Region Damage
+  Enabled: true
+  Type: full
+  IDs: 5
 
-### Switch-Based Control
+◆Plugin Command: [JDK Jump System] Set Jump Height
+  Height: 150
 
-Use a switch to toggle jumping:
+◆Message: Jump over the lava!
+```
 
-1. In Plugin Parameters, set **Disable Jump Switch** to a switch number (e.g., `5`)
-2. When Switch 5 is ON, jumping is disabled
-3. When Switch 5 is OFF, jumping is enabled
+### Fly Puzzle
+
+Create a puzzle requiring flight:
+
+```
+◆Plugin Command: [JDK Jump System] Disable Jump
+◆Plugin Command: [JDK Jump System] Enable Fly
+◆Plugin Command: [JDK Jump System] Set Fly Sprite
+  Sprite: Hero_Fly
+◆Message: Use Shift to fly over obstacles!
+```
 
 ---
 
@@ -282,8 +367,17 @@ Use a switch to toggle jumping:
 
 - If landing spot is blocked, player finds nearest valid tile
 - Landing animation plays (squish effect)
+- Region/terrain damage is applied if configured
 - Fall damage is calculated if enabled
 - Cloud FX appears on landing
+
+### Fly Mode
+
+- Player floats at configured height
+- Movement speed increased by multiplier
+- Custom sprite replaces original during flight
+- Particle FX shows below player
+- Blocked by configured regions/terrain tags
 
 ---
 
@@ -319,9 +413,34 @@ Use a switch to toggle jumping:
 - Adjust Jump Duration (higher = slower)
 - Adjust Animation Speed (lower = faster animation)
 
+### Region damage not working
+
+- Check Region Damage Enabled is true
+- Check Region Damage IDs matches painted regions
+- Check Region Damage Type (full or custom)
+
+### Fly mode not working
+
+- Check Fly Enabled is true
+- Check Fly Switch is set to 0 (use key toggle) or switch is ON
+- Check fly key is configured correctly
+
+### Fly sprite not changing
+
+- Check Fly Sprite filename matches your image (without .png)
+- Make sure image is in `img/characters/` folder
+
 ---
 
 ## Version History
+
+### v5.0.0
+
+- Added Region/Terrain damage system
+- Added Fly mode with custom sprites
+- Added 18 plugin commands
+- Added particle FX for flying
+- Improved parameter organization
 
 ### v4.0.0
 
@@ -333,7 +452,6 @@ Use a switch to toggle jumping:
 - Added landing animation
 - Fixed scale.y bug
 - Removed 8-direction mode (4 only)
-- Added QMovement compatibility
 
 ---
 
@@ -346,4 +464,4 @@ MIT License - Free to use in commercial and non-commercial projects.
 ## Credits
 
 - **Rpx** - Original concept and development
-- **Just Dev** - Testing and bugfix
+- **Just Dev** - Testing and feedback
